@@ -1,5 +1,5 @@
 <template>
-  <div>Hello {{ value }}</div>
+  <div>{{ message }}</div>
 </template>
 
 <script>
@@ -7,8 +7,12 @@ export default {
   name: "App",
   data() {
     return {
-      value: "World"
+      message: ""
     };
+  },
+  async mounted() {
+    const { text } = await (await fetch("/api/HttpTrigger1")).json();
+    this.message = text;
   }
 };
 </script>
